@@ -1,8 +1,8 @@
 #!/bin/bash
-# $PDF_DIR
-# $FILTER_PATTERN
-# $TARGET_DIR
-# $TARGET_DIR_PRFIX (end w/o /)
+# $PDF_INPUT_DIR: directory with unsorted pdf files (eg scanner directory)
+# $FILTER_PATTERN: regex allowed. pattern for sorting files
+# $TARGET_DIR: target directory to sort in pdfs
+# $TARGET_DIR_PRFIX (end w/o /): prefix for target dir. set in docker env
 
 filter() {
   if [[  $1 != *'ocr'* ]]; then
