@@ -6,6 +6,6 @@ RUN apk add --no-cache poppler-utils
 
 WORKDIR /app
 
-COPY --from=builder /scripts /app/
+COPY /scripts /app/
 
 ENTRYPOINT ["/app/pdf_filter.sh"]
