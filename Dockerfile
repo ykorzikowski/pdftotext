@@ -1,9 +1,11 @@
 FROM alpine:3.4
 
-MAINTAINER Kalle R. Møller <docker@k-moeller.dk>
+MAINTAINER Yannik Korzikowski <yannik@korzikowski.de>
 
 RUN apk add --no-cache poppler-utils
 
-ENTRYPOINT ["/usr/bin/pdftotext"]
+WORKDIR /app
 
-CMD ["-layout", "-", "-"] 
+COPY --from=builder /scripts /app/
+
+ENTRYPOINT ["/app/pdf_filter.sh"]
