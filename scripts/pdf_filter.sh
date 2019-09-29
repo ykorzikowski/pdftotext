@@ -2,6 +2,7 @@
 # $PDF_INPUT_DIR: directory with unsorted pdf files (eg scanner directory)
 # $FILTER_PATTERN: regex allowed. pattern for sorting files
 # $TARGET_DIR: target directory to sort in pdfs
+export DATE_STR="%y-%m-%d_%H-%M-%S"
 
 filter() {
   pdftotext "$1" - | tr -d '\n' | grep -qP "$FILTER_PATTERN"
@@ -12,7 +13,15 @@ filter() {
   fi
   mkdir -p "${TARGET_DIR}"
 
-  mv "$1" "${TARGET_DIR}"
+  # on file conflict
+  if [[ -f ${TARGET_DIR}/$(basename "$1") ]]; then
+    date=$(date +$DATE_STR)
+    path="$TARGET_DIR/conflict_${date}_$(basename $1)"
+  else
+    path=${TARGET_DIR}
+  fi
+
+  mv "$1" "$path"
   echo "Moved $1 to ${TARGET_DIR}!"
 }
 
