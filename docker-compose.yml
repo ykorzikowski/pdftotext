@@ -4,7 +4,6 @@ services:
   pdf_sort:
     container_name: pdf_sort
     image: ykorzikowski/pdfsorter
-    environment:
-      - GIT_FILTER_REPO=https://github.com/ykorzikowski/pdfsorter_filters.git
     volumes:
       - ./pdf:/pdf
+      - ./filter:/filter
