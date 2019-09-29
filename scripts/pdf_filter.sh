@@ -16,7 +16,8 @@ filter() {
   # on file conflict
   if [[ -f ${TARGET_DIR}/$(basename "$1") ]]; then
     date=$(date +$DATE_STR)
-    path="$TARGET_DIR/conflict_${date}_$(basename $1)"
+    basename_=$(basename $1)
+    path="$TARGET_DIR/conflict_${date}_${basename_}"
   else
     path=${TARGET_DIR}
   fi
