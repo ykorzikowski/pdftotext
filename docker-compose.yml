@@ -5,7 +5,6 @@ services:
     container_name: pdf_sort
     image: ykorzikowski/pdfsorter
     environment:
-      - TARGET_DIR_PREFIX=/mnt/hdd/belege
       - GIT_FILTER_REPO=https://github.com/ykorzikowski/pdfsorter_filters.git
     volumes:
       - ./pdf:/pdf
