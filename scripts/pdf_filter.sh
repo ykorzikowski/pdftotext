@@ -22,6 +22,12 @@ filter() {
     path=${TARGET_DIR}
   fi
 
+  # cp to datev dir
+  if [ -v DATEV_DIR ]; then
+    echo "Copy $1 to $DATEV_DIR"
+    cp "$1" "$DATEV_DIR"
+  fi
+
   mv "$1" "$path"
   echo "Moved $1 to ${TARGET_DIR}!"
 }
