@@ -4,7 +4,7 @@ MAINTAINER Yannik Korzikowski <yannik@korzikowski.de>
 
 RUN apk add --no-cache poppler-utils \
     && apk update \
-    && apk add bash grep perl
+    && apk add bash grep perl procmail
 
 WORKDIR /app
 

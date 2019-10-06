@@ -13,13 +13,17 @@ filter() {
   fi
   mkdir -p "${TARGET_DIR}"
 
-  # on file conflict
-  if [[ -f ${TARGET_DIR}/$(basename "$1") ]]; then
-    date=$(date +$DATE_STR)
-    basename_=$(basename $1)
-    path="$TARGET_DIR/conflict_${date}_${basename_}"
-  else
-    path=${TARGET_DIR}
+  basename_=$(basename "$1"|sed 's/\.pdf//g')
+  dirname=$(dirname "$1")
+
+  number=$(/app/get_number.sh)
+  path="${TARGET_DIR}/${number}_${basename_}.pdf"
+
+  # cp to datev dir
+  if [ -v DATEV_DIR ]; then
+    datev_path="${DATEV_DIR}/${number}_${basename_}.pdf"
+    echo "Copy $1 to $datev_path"
+    cp "$1" "$datev_path"
   fi
 
   # cp to datev dir
@@ -29,7 +33,7 @@ filter() {
   fi
 
   mv "$1" "$path"
-  echo "Moved $1 to ${TARGET_DIR}!"
+  echo "Moved $1 to $path!"
 }
 
 export -f filter
