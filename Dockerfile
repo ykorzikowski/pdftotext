@@ -15,7 +15,8 @@ WORKDIR /app
 COPY /scripts /app
 COPY /filters /filters
 
-RUN chown -R pdf:pdf .
+RUN chown -R pdf:pdf /app
+RUN chmod -R +x /app
 
 USER pdf
 
